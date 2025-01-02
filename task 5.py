@@ -1,4 +1,5 @@
 from random import choice
+
 import telebot
 
 token = ''
@@ -13,10 +14,10 @@ todos = dict()
 
 HELP = '''
 Список доступных команд:
-/print  - напечатать все задачи на заданную дату
-/add - добавить задачу
-/random - добавить на сегодня случайную задачу
-/help - Напечатать help
+* print  - напечать все задачи на заданную дату
+* todo - добавить задачу
+* random - добавить на сегодня случайную задачу
+* help - Напечатать help
 '''
 
 
@@ -44,6 +45,7 @@ def random(message):
 def add(message):
     _, date, tail = message.text.split(maxsplit=2)
     task = ' '.join([tail])
+    # TODO: 1
     if len(task) < 3:
         bot.send_message(message.chat.id, 'Задачи должны быть больше 3х символов')
     else:
@@ -53,6 +55,7 @@ def add(message):
 
 @bot.message_handler(commands=['print'])
 def print_(message):
+    # TODO: 2
     dates = message.text.split(maxsplit=1)[1].lower().split()
     response  = ''
     for date in dates:
